@@ -109,6 +109,17 @@ def add_product():
     # return a response
     return jsonify ({"Message":"Product added successfully"})
 
+@app.route("/api/get_product")
+def get_product():
+    connection=pymysql.connect(host="localhost", user="root", password="", database="tembo_sokogarden_ryxn")
+    cursor=connection.cursor(pymysql.cursors.DictCursor)
+    sql="select * from products_details"
+    cursor.execute(sql)
+    product=cursor.fetchall()
+    return jsonify(product)    
+
+
+
     
 
 
